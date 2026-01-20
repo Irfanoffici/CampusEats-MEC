@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CampusEatsPromptSuite version="1.0">
+
+  <!-- ========================= -->
+  <!-- GLOBAL SYSTEM PROMPT -->
+  <!-- ========================= -->
+  <SystemPrompt id="GLOBAL">
+    You are a senior system architect and product engineer.
+    Build a production-grade campus food delivery platform called "CampusEats".
+    The system must be Swiggy-level in UX, enterprise-level in security,
+    and support role-based access with SuperAdmin god-mode.
+    Do NOT simplify logic. Do NOT omit security.
+  </SystemPrompt>
+
+  <!-- ========================= -->
+  <!-- TECH STACK PROMPT -->
+  <!-- ========================= -->
+  <TechStack>
+    <Frontend>
+      Flutter (single codebase for Android, iOS, Web)
+      Smooth spring animations, gesture-first UX, glassmorphism
+    </Frontend>
+    <Backend>
+      Supabase (PostgreSQL, Auth, RLS, Edge Functions, Realtime)
+    </Backend>
+    <Security>
+      JWT, Row Level Security, append-only logs, ledger-based payments
+    </Security>
+  </TechStack>
+
+  <!-- ========================= -->
+  <!-- DATABASE DESIGN PROMPT -->
+  <!-- ========================= -->
+  <Prompt id="DATABASE_SCHEMA">
+    Design a Supabase PostgreSQL schema using multiple schemas:
+    core, orders, payments, vendors, logs, analytics.
+    Use UUID primary keys.
+    Enforce Row Level Security on ALL tables.
+    No table should be publicly readable without policy.
+    Logs must be INSERT-only.
+  </Prompt>
+
+  <!-- ========================= -->
+  <!-- AUTH & ROLE PROMPT -->
+  <!-- ========================= -->
+  <Prompt id="AUTH_AND_ROLES">
+    Implement authentication using Supabase Auth.
+    Roles: student, non_mec_student, vendor, admin, super_admin.
+    Use role mapping tables instead of hardcoding roles.
+    JWT must contain role and linked entity IDs.
+    SuperAdmin has read-only access to logs but full system visibility.
+  </Prompt>
+
+  <!-- ========================= -->
+  <!-- STUDENT APP UI PROMPT -->
+  <!-- ========================= -->
+  <Prompt id="STUDENT_APP_UI">
+    Design a Swiggy-like mobile app UI for students.
+    Features:
+    - Animated food cards
+    - Vendor availability glow
+    - Cart morph animation
+    - Order status timeline
+    - Wallet balance with smooth counter animation
+    Dark mode first. Minimal text. High polish.
+  </Prompt>
+
+  <!-- ========================= -->
+  <!-- VENDOR DASHBOARD PROMPT -->
+  <!-- ========================= -->
+  <Prompt id="VENDOR_DASHBOARD">
+    Create a vendor dashboard UI.
+    Vendors can:
+    - Manage menu items
+    - Accept / reject orders in realtime
+    - View revenue analytics
+    - Request withdrawals
+    Vendors must not access platform-wide data.
+  </Prompt>
+
+  <!-- ========================= -->
+  <!-- ADMIN PANEL PROMPT -->
+  <!-- ========================= -->
+  <Prompt id="ADMIN_PANEL">
+    Build an admin panel with advanced controls:
+    - Approve or reject vendors
+    - Suspend users
+    - View campus-wide order analytics
+    - Perform manual order overrides
+    - View partial logs
+    UI should resemble an aircraft cockpit dashboard.
+  </Prompt>
+
+  <!-- ========================= -->
+  <!-- SUPER ADMIN GOD MODE PROMPT -->
+  <!-- ========================= -->
+  <Prompt id="SUPER_ADMIN">
+    Build a SuperAdmin God Console.
+    Capabilities:
+    - Full immutable logs
+    - Admin management
+    - Financial ledger visibility
+    - Feature flags
+    - Kill switches
+    - System health metrics
+    SuperAdmin actions must be logged and irreversible.
+  </Prompt>
+
+  <!-- ========================= -->
+  <!-- PAYMENT & WALLET PROMPT -->
+  <!-- ========================= -->
+  <Prompt id="PAYMENTS">
+    Implement a ledger-based payment system.
+    No direct balance updates.
+    Every transaction must be append-only.
+    Support:
+    - Wallet payments
+    - QR payments
+    - RFID hooks (future-ready)
+    Refunds must be reversal transactions.
+  </Prompt>
+
+  <!-- ========================= -->
+  <!-- REALTIME PROMPT -->
+  <!-- ========================= -->
+  <Prompt id="REALTIME_ORDERS">
+    Use Supabase Realtime for:
+    - Live order updates
+    - Vendor order queue
+    - Student order tracking
+    Ensure realtime channels respect Row Level Security.
+  </Prompt>
+
+  <!-- ========================= -->
+  <!-- LOGGING & AUDIT PROMPT -->
+  <!-- ========================= -->
+  <Prompt id="LOGGING">
+    Implement an append-only event log system.
+    Log every action:
+    - User actions
+    - Admin overrides
+    - Payment events
+    - Auth events
+    Logs must be immutable.
+    Even SuperAdmin cannot delete logs.
+  </Prompt>
+
+  <!-- ========================= -->
+  <!-- FEATURE FLAG PROMPT -->
+  <!-- ========================= -->
+  <Prompt id="FEATURE_FLAGS">
+    Implement feature flags at database level.
+    Example:
+    - ENABLE_RFID
+    - ENABLE_MONTHLY_BILLING
+    - ENABLE_SUPER_ANALYTICS
+    All features exist in code but activate only via flags.
+  </Prompt>
+
+</CampusEatsPromptSuite>
